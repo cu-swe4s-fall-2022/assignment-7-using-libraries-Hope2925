@@ -26,6 +26,15 @@ def get_random_matrix(num_rows, num_columns):
 	return uniform_matrix
 
 def get_file_dimensions(file_name):
+	"""
+	This function takes in the name of a comma separated value (csv)
+	file, reads in the file, and returns the dimensions of the tabular data
+	(rows, columns).
+	Parameters:
+		file_name: string of a csv file to check dimensions of
+	Returns:
+		tuple of file dimensions (#rows, #cols)
+	"""
 	return (0,0)
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
