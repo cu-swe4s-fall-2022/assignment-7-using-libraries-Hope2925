@@ -18,7 +18,9 @@ class MyTestCase(unittest.TestCase):
                 self.assertTrue(0 <
                     dp.get_random_matrix(num_rows, num_cols)[rownum][colnum]
                     <= 1)
-
+        # ensure raises error if use 0 in either
+        self.assertRaises(ValueError, dp.get_random_matrix, 0, num_cols)
+        self.assertRaises(ValueError, dp.get_random_matrix, num_rows, 0)
 
 if __name__ == '__main__':
     unittest.main()
