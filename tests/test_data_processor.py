@@ -20,12 +20,10 @@ class TestUtils(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.list_of_chars = None
-        cls.list_of_ints = None
-        cls.list_of_4ints = None
-        cls.bin_list_of_chars = None
-        cls.ins_bin_list_of_chars = None
-        cls.bin_list_of_chars_rep = None
+        cls.num_rows = None
+        cls.num_cols = None
+        cls.iris_file_name = None
+        cls.tbd_file_name = None
 
     def test_get_random_matrix(self):
         # ensure the correct # rows & # columns are used
