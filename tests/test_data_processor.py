@@ -1,5 +1,5 @@
 import sys
-sys.path.append("../")
+sys.path.append("..")
 import unittest
 import data_processor as dp
 import random
@@ -45,9 +45,9 @@ class TestUtils(unittest.TestCase):
     def test_get_file_dimensions(self):
         # use iris data which should have 150 rows & 5 columns
         self.assertEqual(dp.get_file_dimensions(self.iris_file_name), (150, 5))
-        # raise error if not csv file
-        self.assertRaises(FileExistsError, dp.get_file_dimensions(),
-                          self.tbd_file_name)
+        # if not csv then raises exception
+        self.assertRaises(Exception, dp.get_file_dimensions, self.tbd_file_name)
+
 
 if __name__ == '__main__':
     unittest.main()

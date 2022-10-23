@@ -1,6 +1,9 @@
 # remember to import your libraries!
 import numpy as np
+import pandas as pd
 import random
+import sys
+sys.path.append("./tests/")
 
 
 def get_random_matrix(num_rows, num_columns):
@@ -35,7 +38,27 @@ def get_file_dimensions(file_name):
 	Returns:
 		tuple of file dimensions (#rows, #cols)
 	"""
-	return (0,0)
+	# open file
+	f = open(file_name, 'r')
+	# start count
+	num_rows = 0
+	fin_num_cols = 0
+	for line in f:
+		# get the # cols for first line (if empty would be 0)
+		num_cols = len(line.split(sep=","))
+		# if not an empty line
+		if (num_cols > 1):
+			# add 1 to count for each line
+			num_rows += 1
+			# get final # rows
+			fin_num_cols = num_cols
+		else:
+			print("row", num_rows, "is not comma separated")
+	# close file
+	f.close()
+	if fin_num_cols == 0:
+		raise Exception("Unless there is only 1 column, file is not comma separated")
+	return (num_rows, fin_num_cols)
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
 	return None
