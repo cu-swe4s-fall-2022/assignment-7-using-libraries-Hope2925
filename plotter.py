@@ -32,13 +32,34 @@ def dfboxplotter(df, ylabel, file_name):
 
 
 
-# def dfscatterer(df, file_name, x, y):
-#     # something
-#
-# def multi_paneler(df, file_name):
-#     """
-#
-#     :param df:
-#     :param file_name:
-#     :return:
-#     """
+def dfscatterer(df, file_name, x, y, subset):
+    """
+    This function makes a scatter plot between x and y (columns)
+    in the dataframe df, with colored subsets of column subset.
+    This plot is saved as file_name.
+    Parameters:
+        - df: dataframe with columns appropriately labeled
+        - file_name: string file name as png
+        - x & y: column names or indexes of dataframe df
+            - columns must be of integers or floats
+        - subset: column name or index by which the scatters
+            of x and y should be labeled
+    Returns:
+        - png file of labeled scatterplot between x and y
+    """
+    # make a new figure
+    fig = plt.figure()
+    # iterate through species to have diff colors for each subset
+    for subset_name in set(df[subset]):
+        # make scatterplot of only things in that subset
+        df_subset = df[df[subset] == subset_name]
+        plt.scatter(df_subset[x], df_subset[y],
+                    label=subset_name)
+    # add legend and labels
+    plt.legend()
+    plt.xlabel(x)
+    plt.ylabel(y)
+    # save figure
+    plt.savefig(file_name)
+
+def main():
