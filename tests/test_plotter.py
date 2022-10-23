@@ -20,6 +20,8 @@ class MyTestCase(unittest.TestCase):
         cls.x = "petal_width"
         # choose y for scatter
         cls.y = "petal_length"
+        # choose subset
+        cls.subset = 'Iris_species'
 
 
     @classmethod
@@ -29,6 +31,7 @@ class MyTestCase(unittest.TestCase):
     def test_dfboxplotter(self):
         # assert file is produced with proper name
         written_file_name = 'test_boxplot.png'
+        # make a figure
         pl.dfboxplotter(self.df, "cm", written_file_name)
         # confirm path created for file with appropriate name in same folder
         self.assertEqual(path.exists(written_file_name), True)
@@ -36,7 +39,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(path.isfile(written_file_name), True)
     def test_dfscatterer(self):
         written_file_name = 'test_scatter.png'
-        pl.dfscatterer(self.df, written_file_name, self.x, self.y)
+        pl.dfscatterer(self.df, written_file_name, self.x, self.y, self.subset)
         # confirm path created for file with appropriate name in same folder
         self.assertEqual(path.exists(written_file_name), True)
         # confirm file is actually a file

@@ -14,21 +14,18 @@ def dfboxplotter(df, ylabel, file_name):
     Parameters:
         - df: dataframe (pandas object) of data with columns to plot
         - ylabel: y axis label to plot (string)
-        - xlabels: x labels to plot (list of column names)
         - filename: desired file name to save plot as
     Returns:
         - png format of boxplot with file name
     """
-    # make a figure & axis
-    fig = plt.figure()
-    ax = fig.add_subplot()
     # plot a boxplot using built in pandas method
     #   this method automatically ignores nonquantitative columns
-    ax = df.boxplot(grid=False)
+    df.boxplot(grid=False)
     # add y labels
-    ax.set_ylabel(ylabel)
-    # save figure
-    plt.savefig(file_name)
+    plt.ylabel(ylabel)
+    if file_name:
+        # save figure
+        plt.savefig(file_name)
 
 
 
@@ -63,3 +60,41 @@ def dfscatterer(df, file_name, x, y, subset):
     plt.savefig(file_name)
 
 def main():
+    # get dataframe data from iris
+    file_name = "./tests/iris.data"
+    iris_df = pd.read_csv(file_name, delimiter=",", header=None)
+    # add column names
+    iris_df.columns = ["sepal_width", "sepal_length",
+                      "petal_width", "petal_length",
+                      "Iris_species"]
+    # remove the top and right borders
+    # make figure with subplots side by side (1 row 2 cols)
+    fig, (ax1, ax2) = plt.subplots(1, 2)
+    fig.set_size_inches(12, 6)
+    # make boxplot
+    iris_df.boxplot(grid=False, ax=ax1)
+    ax1.set_ylabel("cm")
+
+    # iterate through species to have diff colors for each subset
+    for subset_name in set(iris_df["Iris_species"]):
+        # make scatterplot of only things in that subset
+        df_subset = iris_df[iris_df["Iris_species"] == subset_name]
+        ax2.scatter(df_subset["petal_length"], df_subset["petal_width"],
+                    label=subset_name)
+    # add legend and labels
+    ax2.legend()
+    ax2.set_xlabel("petal_length")
+    ax2.set_ylabel("petal_width")
+
+    # remove right and top spines of both axes
+    for ax in (ax1, ax2):
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+
+    # save the figure
+    plt.savefig("test_combined.png")
+
+
+if __name__ == "__main__":
+    main()
+
