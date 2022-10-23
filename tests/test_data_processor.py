@@ -1,5 +1,6 @@
 import sys
 sys.path.append("..")
+from os import path
 import unittest
 import data_processor as dp
 import random
@@ -48,6 +49,15 @@ class TestUtils(unittest.TestCase):
         # if not csv then raises exception
         self.assertRaises(Exception, dp.get_file_dimensions, self.tbd_file_name)
 
+    def test_write_matrix_to_file(self):
+        written_file_name = 'tests/written_file.csv'
+        dp.write_matrix_to_file(self.num_rows, self.num_cols, written_file_name)
+        # confirm path created for file with appropriate name in same folder
+        self.assertEqual(path.exists(written_file_name), True)
+        # confirm file is actually a file
+        self.assertEqual(path.isfile(written_file_name), True)
+        # confirm file made contains appropriate # dimensions (& csv file)
+        self.assertEqual(dp.get_file_dimensions(written_file_name), (self.num_rows, self.num_cols))
 
 if __name__ == '__main__':
     unittest.main()
