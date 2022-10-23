@@ -5,11 +5,17 @@ import unittest
 import pandas as pd
 import plotter as pl
 from os import path
+import matplotlib.pyplot as plt
 
 class MyTestCase(unittest.TestCase):
+    @classmethod
     def setUpClass(cls):
         # get dataframe
-        cls.df = pd.read_csv("iris.data", delimiter=",")
+        cls.df = pd.read_csv("iris.data", delimiter=",", header=None)
+        # add column names
+        cls.df.columns = ["sepal_width", "sepal_length",
+                          "petal_width", "petal_length",
+                          "Iris_species"]
         # choose x for scatter
         # choose y for scatter
 
@@ -26,7 +32,6 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(path.exists(written_file_name), True)
         # confirm file is actually a file
         self.assertEqual(path.isfile(written_file_name), True)
-        self.assertEqual(True, False)
     #def test_dfscatterer(self):
 
 

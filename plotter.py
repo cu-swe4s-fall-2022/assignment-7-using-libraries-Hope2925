@@ -13,19 +13,32 @@ def dfboxplotter(df, ylabel, file_name):
     the dataframe.
     Parameters:
         - df: dataframe (pandas object) of data with columns to plot
-        - ylabel: y axis label to plot
+        - ylabel: y axis label to plot (string)
+        - xlabels: x labels to plot (list of column names)
         - filename: desired file name to save plot as
     Returns:
         - png format of boxplot with file name
     """
+    # make a figure & axis
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    # plot a boxplot using built in pandas method
+    #   this method automatically ignores nonquantitative columns
+    ax = df.boxplot(grid=False)
+    # add y labels
+    ax.set_ylabel(ylabel)
+    # save figure
+    plt.savefig(file_name)
 
-def dfscatterer(df, file_name, x, y):
-    # something
 
-def multi_paneler(df, file_name):
-    """
 
-    :param df:
-    :param file_name:
-    :return:
-    """
+# def dfscatterer(df, file_name, x, y):
+#     # something
+#
+# def multi_paneler(df, file_name):
+#     """
+#
+#     :param df:
+#     :param file_name:
+#     :return:
+#     """
