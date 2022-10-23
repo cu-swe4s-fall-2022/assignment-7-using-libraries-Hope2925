@@ -50,7 +50,7 @@ class TestUtils(unittest.TestCase):
         self.assertRaises(Exception, dp.get_file_dimensions, self.tbd_file_name)
 
     def test_write_matrix_to_file(self):
-        written_file_name = 'tests/written_file.csv'
+        written_file_name = 'written_file.csv'
         dp.write_matrix_to_file(self.num_rows, self.num_cols, written_file_name)
         # confirm path created for file with appropriate name in same folder
         self.assertEqual(path.exists(written_file_name), True)
@@ -58,6 +58,8 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(path.isfile(written_file_name), True)
         # confirm file made contains appropriate # dimensions (& csv file)
         self.assertEqual(dp.get_file_dimensions(written_file_name), (self.num_rows, self.num_cols))
+        # raises error if file name does not end with csv
+        self.assertRaises(Exception, dp.write_matrix_to_file, 1, 2, "nocsv.txt")
 
 if __name__ == '__main__':
     unittest.main()

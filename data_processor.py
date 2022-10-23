@@ -61,4 +61,28 @@ def get_file_dimensions(file_name):
 	return (num_rows, fin_num_cols)
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
+	"""
+	This function takes the number of desired rows and columns, and
+	writes matrix of that size of random numbers from a uniform
+	distribution within range (0, 1] and then writes it to a
+	csv file.
+	Parameters
+		- num_rows: # of rows, integer > 0
+		- num_columns: # of columns, integer > 0
+		- file_name: name of a csv file to save the matrix in
+			- (must end in .csv)
+	Returns:
+		- outputs a file of the given file name with the
+			created matrix in csv form
+	"""
+	# make an exception if file name does not end with csv
+	file_name_split = file_name.split(sep=".")
+	if file_name_split[len(file_name_split)-1] != "csv":
+		# if not then add & raise exception to warn user
+		file_name = file_name + ".csv"
+		raise Exception("Original name did not end in csv so adding it")
+	# make appropriately sized matrix
+	matrix_to_write = get_random_matrix(num_rows, num_columns)
+	# write matrix to file as csv
+	np.savetxt(file_name, matrix_to_write, delimiter=',')
 	return None
