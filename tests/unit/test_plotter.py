@@ -2,10 +2,9 @@ import unittest
 import sys
 import unittest
 import pandas as pd
-import plotter as pl
 from os import path
-
 sys.path.append("../..")
+import plotter as pl
 
 
 class MyTestCase(unittest.TestCase):

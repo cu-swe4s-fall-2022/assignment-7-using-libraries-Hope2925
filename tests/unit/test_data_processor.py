@@ -1,10 +1,9 @@
-import sys
 from os import path
 import unittest
-import data_processor as dp
 import random
-
+import sys
 sys.path.append("../..")
+import data_processor as dp
 
 
 class TestUtils(unittest.TestCase):
