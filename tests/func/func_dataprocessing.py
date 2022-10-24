@@ -1,8 +1,8 @@
 import sys
-import data_processor as dp
 import argparse
 
 sys.path.append("../../")
+import data_processor as dp
 
 
 def main():
