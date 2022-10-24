@@ -1,0 +1,11 @@
+name: S4S
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - matplotlib
+  - numpy
+  - pycodestyle=2.8
+  - python=3.6.13
+  - pandas
+prefix: /Users/hopekirby/opt/anaconda3/envs/S4S
