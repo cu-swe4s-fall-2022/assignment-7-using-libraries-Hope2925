@@ -1,8 +1,9 @@
 # Your code to create majestic plots goes in here!
 # import packages
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import argparse
+
 
 def dfboxplotter(df, ylabel, file_name):
     """
@@ -26,7 +27,6 @@ def dfboxplotter(df, ylabel, file_name):
     if file_name:
         # save figure
         plt.savefig(file_name)
-
 
 
 def dfscatterer(df, file_name, x, y, subset):
@@ -60,6 +60,12 @@ def dfscatterer(df, file_name, x, y, subset):
     plt.savefig(file_name)
 
 def main():
+    # will read arguments through command line
+    parser = argparse.ArgumentParser()
+    # add an argument
+    parser.add_argument('--png_name', dest='png_name', type=str, required=True)
+    # grab the arguments where arg is a dict
+    arg = parser.parse_args()
     # get dataframe data from iris
     file_name = "./tests/iris.data"
     iris_df = pd.read_csv(file_name, delimiter=",", header=None)
@@ -92,7 +98,7 @@ def main():
         ax.spines['top'].set_visible(False)
 
     # save the figure
-    plt.savefig("test_combined.png")
+    plt.savefig(arg.png_name)
 
 
 if __name__ == "__main__":
