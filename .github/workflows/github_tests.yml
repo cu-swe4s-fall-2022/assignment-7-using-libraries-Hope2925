@@ -38,7 +38,8 @@ jobs:
           activate-environment: S4S
           environment-file: environment.yml
       - run: cd tests/func |
-        bash testdata_processor.sh
+        bash testdata_processor.sh |
+        bash testplotter.sh
   # job to run pycodestyle
   code_style:
     runs-on: ubuntu-latest
