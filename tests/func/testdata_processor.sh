@@ -1,3 +1,4 @@
+test -e ssshtest || wget -q https://raw.githubusercontent.com/ryanlayer/ssshtest/master/ssshtest
 . ssshtest
 
 run outputcheck python func_dataprocessing.py --num_rows 3 --num_cols 5
