@@ -59,6 +59,7 @@ def dfscatterer(df, file_name, x, y, subset):
     # save figure
     plt.savefig(file_name)
 
+
 def main():
     # will read arguments through command line
     parser = argparse.ArgumentParser()
@@ -71,8 +72,8 @@ def main():
     iris_df = pd.read_csv(file_name, delimiter=",", header=None)
     # add column names
     iris_df.columns = ["sepal_width", "sepal_length",
-                      "petal_width", "petal_length",
-                      "Iris_species"]
+                       "petal_width", "petal_length",
+                       "Iris_species"]
     # remove the top and right borders
     # make figure with subplots side by side (1 row 2 cols)
     fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -103,4 +104,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

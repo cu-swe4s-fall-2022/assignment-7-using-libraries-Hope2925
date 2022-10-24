@@ -1,15 +1,18 @@
 import sys
-sys.path.append("../../")
 import data_processor as dp
 import argparse
+
+sys.path.append("../../")
 
 
 def main():
     # will read arguments through command line
     parser = argparse.ArgumentParser()
     # add an argument
-    parser.add_argument('--num_rows', dest='num_rows', type=int,  required=True)
-    parser.add_argument('--num_cols', dest='num_cols', type=int,  required=True)
+    parser.add_argument('--num_rows', dest='num_rows',
+                        type=int, required=True)
+    parser.add_argument('--num_cols', dest='num_cols',
+                        type=int, required=True)
     # grab the arguments where arg is a dict
     arg = parser.parse_args()
 
@@ -22,4 +25,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
